@@ -13,8 +13,8 @@ class Project(models.Model):
 
 class ToDo(models.Model):
     project_name = models.ForeignKey(Project, on_delete=models.CASCADE)
-    text = models.TextField(max_length=255)
-    create_date = models.DateTimeField(auto_now_add=1)
-    update_date = models.DateTimeField(auto_now=1)
+    text = models.TextField()
+    create_date = models.DateTimeField(auto_now_add=True)
+    update_date = models.DateTimeField(auto_now=True)
     creator = models.ForeignKey(User, on_delete=models.PROTECT)
-    is_active = models.BinaryField(default=True)
+    is_active = models.BooleanField(default=True)
