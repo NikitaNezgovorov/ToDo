@@ -1,7 +1,7 @@
 import React from 'react'
 import {
-  Link,
-  useParams
+    Link,
+    useParams
 } from "react-router-dom";
 
 
@@ -26,7 +26,7 @@ const ProjectList = ({items}) => {
                 <th>Repository</th>
                 <th></th>
             </tr>
-            {items.map((item) => <ProjectListItem item={item} />)}
+            {items.map((item) => <ProjectListItem item={item}/>)}
         </table>
     )
 }
@@ -34,27 +34,28 @@ const ProjectList = ({items}) => {
 const ProjectUserItem = ({item}) => {
     return (
         <li>
-        {item.username} ({item.email})
-    </li>
+            {item.username} ({item.email})
+        </li>
     )
 }
 
 
 const ProjectDetail = ({getProject, item}) => {
-    let { id } = useParams();
+    let {id} = useParams();
     getProject(id)
     let users = item.users ? item.users : []
+    console.log(id)
     return (
         <div>
             <h1>{item.name}</h1>
             Repository: <a href={item.repository}>{item.repository}</a>
-            <p></p>
-            Users:
+            <p>Users:</p>
             <ol>
-            {users.map((user) => <ProjectUserItem item={user} />)}
+                {users.map((user) => <ProjectUserItem item={user}/>)}
             </ol>
         </div>
     )
+
 }
 
-export {ProjectList , ProjectDetail}
+export {ProjectDetail, ProjectList}
