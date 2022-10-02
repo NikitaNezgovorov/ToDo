@@ -41,7 +41,7 @@ const ProjectUserItem = ({item}) => {
 
 
 const ProjectDetail = ({getProject, item}) => {
-    let {id} = useParams();
+    let { id } = useParams();
     getProject(id)
     let users = item.users ? item.users : []
     console.log(id)
@@ -49,9 +49,10 @@ const ProjectDetail = ({getProject, item}) => {
         <div>
             <h1>{item.name}</h1>
             Repository: <a href={item.repository}>{item.repository}</a>
-            <p>Users:</p>
+            <p></p>
+            Users:
             <ol>
-                {users.map((user) => <ProjectUserItem item={user}/>)}
+            {users.map((user) => <ProjectUserItem item={user}/>)}
             </ol>
         </div>
     )
