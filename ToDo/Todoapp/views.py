@@ -1,5 +1,6 @@
 from rest_framework import status
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
@@ -32,6 +33,7 @@ class ToDoPagination(PageNumberPagination):
 class ToDoViewSet(ModelViewSet):
     serializer_class = ToDoSerializer
     queryset = ToDo.objects.all()
+
     pagination_class = ToDoPagination
     filterset_class = ToDoFilter
 

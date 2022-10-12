@@ -14,7 +14,7 @@ const UserItem = ({user}) => {
 
 const UserList = ({users}) => {
     return (
-        <table>
+        <table className="table">
             <tr>
                 <th>Login</th>
                 <th>First name</th>

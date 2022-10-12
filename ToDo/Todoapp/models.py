@@ -8,7 +8,10 @@ class Project(models.Model):
     repository = models.URLField(blank=True)
 
     def __str__(self):
-        return self.name
+        return f'({self.id}) {self.name}'
+
+    class Meta:
+        ordering = ['id']
 
 
 class ToDo(models.Model):
@@ -18,3 +21,6 @@ class ToDo(models.Model):
     update_date = models.DateTimeField(auto_now=True)
     creator = models.ForeignKey(User, on_delete=models.PROTECT)
     is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['id']

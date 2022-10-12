@@ -19,7 +19,7 @@ const ProjectListItem = ({item}) => {
 
 const ProjectList = ({items}) => {
     return (
-        <table>
+        <table className="table">
             <tr>
                 <th>Id</th>
                 <th>Name</th>

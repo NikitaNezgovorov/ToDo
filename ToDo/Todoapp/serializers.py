@@ -9,7 +9,7 @@ class ProjectSerializer(ModelSerializer):
 
     class Meta:
         model = Project
-        fields = '__all__'
+        fields = ['id', 'name', 'users', 'repository']
 
 
 class ToDoSerializer(ModelSerializer):
@@ -18,4 +18,4 @@ class ToDoSerializer(ModelSerializer):
 
     class Meta:
         model = ToDo
-        exclude = ('is_active',)
+        fields = ['id', 'project_name', 'text', 'create_date', 'update_date', 'creator']
