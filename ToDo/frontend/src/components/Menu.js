@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-    Link,Redirect
+    Link
 } from "react-router-dom";
 
 function NavbarItem({name, href}) {
@@ -22,7 +22,7 @@ export default function Navbar({navbarItems, auth, logout}) {
     }
     return (
         <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a className="navbar-brand" href="ToDo/frontend/src/components/Menu#">Fixed navbar</a>
+            <a className="navbar-brand" href="ToDo/frontend/src/components/Menu#">ToDo Project</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>

@@ -1,11 +1,12 @@
-from rest_framework.serializers import ModelSerializer, HyperlinkedModelSerializer, HyperlinkedIdentityField, \
-    HyperlinkedRelatedField
+from rest_framework.serializers import ModelSerializer
+
+from userapp.serializers import UserSerializer
 from .models import Project, ToDo
 
 
 class ProjectSerializer(ModelSerializer):
     # owner = HyperlinkedIdentityField(view_name='user-detail')
-    # users = HyperlinkedRelatedField(many=True, view_name='user-detail', read_only=True)
+    users = UserSerializer(many=True)
 
     class Meta:
         model = Project

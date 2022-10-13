@@ -40,24 +40,23 @@ const ProjectUserItem = ({item}) => {
 }
 
 
-// const ProjectDetail = ({getProject, item}) => {
-//     let {id} = useParams();
-//     getProject(id)
-//     let users = item.users ? item.users : []
-//     console.log(id)
-//     return (
-//         <div>
-//             <h1>{item.name}</h1>
-//             Repository: <a href={item.repository}>{item.repository}</a>
-//             <p></p>
-//             Users:
-//             <ol>
-//                 {users.map((user) => <ProjectUserItem item={user} />)}
-//
-//             </ol>
-//         </div>
-//     )
-//
-// }
+const ProjectDetail = ({getProject, item}) => {
+    let {id} = useParams();
+    getProject(id)
+    let projectUsers = item.users ? item.users : []
+    console.log(id)
+    return (
+        <div>
+            <h1>{item.name}</h1>
+            Repository: <a href={item.repository}>{item.repository}</a>
+            <p></p>
+            Users:
+            <ol>
+                {projectUsers.map((users) => <ProjectUserItem item={users} />)}
+            </ol>
+        </div>
+    )
 
-export {ProjectList}
+}
+
+export {ProjectList, ProjectDetail}
