@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'Todoapp',
     'rest_framework.authtoken',
+    'drf_yasg',
 
 ]
 

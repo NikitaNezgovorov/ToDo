@@ -15,20 +15,36 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
 from rest_framework.authtoken import views
+from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
     TokenVerifyView
 )
-from userapp.views import UserViewSet
+
 from Todoapp.views import ProjectViewSet, ToDoViewSet
+from userapp.views import UserViewSet
 
 router = DefaultRouter()
 router.register('users', UserViewSet)
 router.register('projects', ProjectViewSet)
 router.register('todos', ToDoViewSet)
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="ToDo",
+        default_version='0.1',
+        description="Documentation to out project",
+        contact=openapi.Contact(email="admin@admin.local"),
+        license=openapi.License(name="MIT License"),
+    ),
+    public=True,
+    permission_classes=[permissions.AllowAny],
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,4 +54,6 @@ urlpatterns = [
     path('api-token-auth/', views.obtain_auth_token),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('swagger<str:format>/', schema_view.without_ui(cache_timeout=0)),
+    path('swagger/', schema_view.with_ui('swagger')),
 ]
