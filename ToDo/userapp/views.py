@@ -1,11 +1,13 @@
 # Create your views here.
 from rest_framework import mixins, viewsets
+from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 
 from .models import User
 from .serializers import UserSerializer, UserSerializerWithIsStaffIsSuperuser
 
 
 class UserViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
+    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     serializer_class = UserSerializer
     queryset = User.objects.all()
 

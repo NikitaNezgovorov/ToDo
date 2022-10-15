@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'Todoapp',
     'rest_framework.authtoken',
     'drf_yasg',
+    'graphene_django',
 
 ]
 
@@ -147,6 +148,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+GRAPHENE = {
+    "SCHEMA": "ToDo.schema.schema"
+}
 
 AUTH_USER_MODEL = "userapp.User"
 # Internationalization
