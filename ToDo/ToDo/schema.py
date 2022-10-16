@@ -1,9 +1,7 @@
 import graphene
-from graphene import ObjectType, relay
+from graphene import ObjectType
 from graphene_django import DjangoObjectType
-from graphql.pyutils import description
 
-import userapp
 from Todoapp.models import ToDo, Project
 from userapp.models import User
 
@@ -41,6 +39,22 @@ class ProjectUpdateMutation(graphene.Mutation):
         return ProjectUpdateMutation(project=project)
 
 
+class UserCreateMutation(graphene.Mutation):
+    class Arguments:
+        username = graphene.String(required=True)
+        first_name = graphene.String(required=True)
+        last_name = graphene.String(required=True)
+        email = graphene.String(required=True)
+
+    user = graphene.Field(UserType)
+
+    @classmethod
+    def mutate(cls, root, info, **kwargs):
+        user = User.objects.create(**kwargs)
+
+        return cls(user=user)
+
+
 class ProjectCreateMutation(graphene.Mutation):
     class Arguments:
         name = graphene.String(required=True)
@@ -54,13 +68,12 @@ class ProjectCreateMutation(graphene.Mutation):
         project = Project.objects.create(**kwargs)
 
         if users is not None:
-            users_set = []
-            for user_id in users:
-                users_objects = User.objects.get(pk=user_id)
-                users_set.append(users_objects)
-            project.users.set(users_set)
+            #     users_set = []
+            #     for user_id in users:
+            #         users_objects = User.objects.get(pk=user_id)
+            #         users_set.append(users_objects)
+            project.users.set(users)
         project.save()
-
 
         return cls(project=project)
 
@@ -68,7 +81,7 @@ class ProjectCreateMutation(graphene.Mutation):
 class ProjectDeleteMutation(graphene.Mutation):
     class Arguments:
         id = graphene.List(graphene.ID)
-        # id = graphene.ID()
+
     projects = graphene.List(ProjectType)
 
     @classmethod
@@ -83,6 +96,7 @@ class Mutation(graphene.ObjectType):
     update_project = ProjectUpdateMutation.Field()
     create_project = ProjectCreateMutation.Field()
     delete_project = ProjectDeleteMutation.Field()
+    create_user = UserCreateMutation.Field()
 
 
 class Query(ObjectType):
