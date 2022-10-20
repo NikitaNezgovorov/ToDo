@@ -5,8 +5,8 @@ const ToDoListItem = ({item}) => {
         <tr>
             <td>{item.id}</td>
             <td>{item.text}</td>
-            <td>{item.create_date}</td>
-            <td>{item.project_name}</td>
+            <td>{item.createDate}</td>
+            <td>{item.projectName}</td>
             <td>{item.creator}</td>
         </tr>
     )
