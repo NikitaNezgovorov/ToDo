@@ -32,7 +32,8 @@ const ProjectList = ({items}) => {
 }
 
 const ProjectUserItem = ({item}) => {
-    return (
+
+        return (
         <li>
             {item.username} {item.email}
         </li>
@@ -40,10 +41,11 @@ const ProjectUserItem = ({item}) => {
 }
 
 
-const ProjectDetail = ({getProject, item}) => {
+const ProjectDetail = ({getProject, item, users}) => {
     let {id} = useParams();
     getProject(id)
-    let projectUsers = item.users ? item.users : []
+    let projectUsersId = item.users ? item.users : []
+    let projectUsers = users.filter(user=> projectUsersId.includes(user.id))
     console.log(id)
     return (
         <div>

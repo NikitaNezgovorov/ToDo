@@ -6,7 +6,7 @@ from .models import Project, ToDo
 
 class ProjectSerializer(ModelSerializer):
     # owner = HyperlinkedIdentityField(view_name='user-detail')
-    users = UserSerializer(many=True)
+    # users = UserSerializer(many=True)
 
     class Meta:
         model = Project
