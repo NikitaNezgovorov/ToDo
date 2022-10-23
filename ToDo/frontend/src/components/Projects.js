@@ -3,7 +3,7 @@ import {Link, useParams} from "react-router-dom";
 
 
 const ProjectListItem = ({item, delete_project}) => {
-    let link_to = `/project/${item.id}`
+    let link_to = `/projects/${item.id}`
     return (
         <tr>
             <td>{item.id}</td>
@@ -42,16 +42,18 @@ const ProjectUserItem = ({item}) => {
 }
 
 
-const ProjectDetail = ({getProject, item, users}) => {
-    let {id} = useParams();
-    getProject(id)
-    let projectUsersId = item.users ? item.users : []
+const ProjectDetail = ({item, users}) => {
+    let {projectId} = useParams();
+    console.log(item)
+    let filtered_item = item.filter((project => project.id === parseInt(projectId)))
+    console.log(filtered_item)
+    let projectUsersId = filtered_item[0].users ? filtered_item[0].users : []
     let projectUsers = users.filter(user => projectUsersId.includes(user.id))
-    console.log(id)
+    // console.log(id)
     return (
         <div>
-            <h1>{item.name}</h1>
-            Repository: <a href={item.repository}>{item.repository}</a>
+            <h1>{filtered_item[0].name}</ h1>
+            Repository: <a href={filtered_item[0].repository}>{filtered_item[0].repository}</a>
             <p></p>
             Users:
             <ol>
