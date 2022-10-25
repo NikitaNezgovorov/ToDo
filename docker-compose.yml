@@ -24,10 +24,10 @@ services:
   backend:
     container_name: 'django'
     build:
-      context: ./todo
+      context: ./ToDo
     ports:
       - 8000:8000
-    command: bash -c python manage.py migrate; python manage.py create_users; gunicorn todo.wsgi -b 0.0.0.0:8000"
+    command: bash -c "python manage.py migrate; python manage.py create_users; gunicorn ToDo.wsgi -b 0.0.0.0:8000"
     depends_on:
       - db
   nginx:
